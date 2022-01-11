@@ -1,0 +1,1 @@
+docker build . --build-arg TOKEN_VALUE="TOKEN_GOES_HERE"
