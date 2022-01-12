@@ -2,3 +2,4 @@ discord
 requests
 schedule
 youtube_dl
+PyNaCl
