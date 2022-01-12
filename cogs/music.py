@@ -1,4 +1,5 @@
 import discord
+import youtube_dl
 from discord.ext import commands
 
 class Music(commands.Cog):
@@ -8,8 +9,12 @@ class Music(commands.Cog):
         #events
     @commands.Cog.listener()
     async def on_ready(self):
-        print("nya")
+        print
     #commands
+    """
+    Connect to Voice
+    If no one is in the voice channel dont do anything
+    """
     @commands.command()
     async def join(self, ctx):
         if ctx.author.voice is None:
@@ -21,9 +26,25 @@ class Music(commands.Cog):
             else:
                 await ctx.voice_client.move_to(voice_channel)
     
+    """
+    Disconnect From voice
+    """
     @commands.command()
     async def disconnect(self, ctx):
         await ctx.voice_client.disconnect()
+    
+    """
+    Play that funky music
+    """
+    @commands.command()
+    async def play(self, ctx, url):
+
+        with youtube_dl.YoutubeDL({'format':"bestaudio"}) as ydl:
+            ydl.cache.remove()
+            info = ydl.extract_info(url,download=False)
+            url2 = info['formats'][0]['url']
+            source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(url2))
+            ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
 
 def setup(client):
     """ Setup music Module"""
