@@ -1,4 +1,4 @@
 discord
 requests
 schedule
-youtube_dlz
+youtube_dl
