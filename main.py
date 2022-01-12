@@ -1,9 +1,7 @@
 import discord;
 from discord.ext import commands
 import os;
-import requests;
-import random
-import schedule
+import json;
 
 listener = discord.Client()
 client = commands.Bot(command_prefix = 'nya ')
@@ -19,4 +17,7 @@ for filename in os.listdir('./cogs'):
         print(filename)
         client.load_extension(f'cogs.{filename[:-3]}')
 
-client.run((os.getenv('TOKEN')))
+with open('secrets.json') as filename:
+    secret = json.load(filename)
+
+client.run(secret["discordAPI"])
