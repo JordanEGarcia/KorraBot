@@ -9,7 +9,7 @@ class Music(commands.Cog):
         #events
     @commands.Cog.listener()
     async def on_ready(self):
-        print
+        return
     #commands
     """
     Connect to Voice

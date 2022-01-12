@@ -1,5 +1,7 @@
+cffi
 discord
 requests
 schedule
+ffmpeg
 youtube_dl
 PyNaCl
