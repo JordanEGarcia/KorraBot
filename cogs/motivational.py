@@ -25,6 +25,10 @@ class Motivational(commands.Cog):
     async def quote(self, ctx):
         await ctx.send(get_quote())
 
+    @commands.command()
+    async def advice(self, ctx):
+        await ctx.send(get_advice())
+
 def setup(client):
     """ Setup Cat Module"""
     client.add_cog(Motivational(client))
@@ -35,7 +39,13 @@ def get_quote():
     quote = json_data[0]['q'] + "\n - ME"
     return quote
 
-sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "depressing"]
+def get_advice():
+    response = requests.get("https://api.adviceslip.com/advice")
+    json_data = json.loads(response.text)
+    advice = json_data["slip"]['advice']
+    return advice
+
+sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "depressing", "cry"]
 starter_encourougements = [
 "*pat pat*"
 "Cheer up! I believe in you!",
