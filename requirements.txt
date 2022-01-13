@@ -6,4 +6,4 @@ ffmpeg
 youtube_dl
 PyNaCl
 chatterbot
-chatterbot-corpus
+chatterbot_corpus
