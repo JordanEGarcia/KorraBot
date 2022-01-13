@@ -6,6 +6,8 @@ import discord
 from discord.ext import commands
 import random
 from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.comparisons import LevenshteinDistance
+from chatterbot.response_selection import get_random_response
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
@@ -44,7 +46,8 @@ def turnOnBot():
         logic_adapters=[
             {
                 'import_path': 'chatterbot.logic.BestMatch',
-
+                "statement_comparison_function": LevenshteinDistance,
+                "response_selection_method": get_random_response
             }
         ]
     )
