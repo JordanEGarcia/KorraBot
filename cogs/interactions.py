@@ -41,7 +41,6 @@ def setup(client):
 def turnOnBot():
     my_bot = ChatBot(
         'Korra',
-        storage_adapter='chatterbot.storage.SQLStorageAdapter',
         logic_adapters=[
             {
                 'import_path': 'chatterbot.logic.BestMatch',
@@ -52,7 +51,7 @@ def turnOnBot():
     list_trainer = ListTrainer(my_bot)
 
     trainer = ChatterBotCorpusTrainer(my_bot)
-    trainer.train('chatterbot.corpus.english', "./db/chatbot.yml")
+    trainer.train('chatterbot.corpus.english', "./db/chatbot/")
     return [my_bot, trainer]
 
 def botResponse(bot, input):

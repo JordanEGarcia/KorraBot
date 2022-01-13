@@ -1,2 +1,8 @@
 secrets.json
 __pycache__
+db.sqlite3
+.gitignore
+db.sqlite3-wal
+.gitignore
+db.sqlite3-shm
+sentence_tokenizer.pickle
