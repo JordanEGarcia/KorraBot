@@ -1,10 +1,7 @@
-import json
 from discord.ext.commands import context
 from discord.ext.commands.core import command;
-import requests
 import discord
 from discord.ext import commands
-import random
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.comparisons import LevenshteinDistance
 from chatterbot.response_selection import get_random_response
@@ -47,12 +44,13 @@ def turnOnBot():
             {
                 'import_path': 'chatterbot.logic.BestMatch',
                 "statement_comparison_function": LevenshteinDistance,
-                "response_selection_method": get_random_response
+                "response_selection_method": get_random_response,
+                #'default_response': 'What does that even mean?'
             }
         ]
     )
     list_trainer = ListTrainer(my_bot)
-
+    
     trainer = ChatterBotCorpusTrainer(my_bot)
     trainer.train('chatterbot.corpus.english', "./db/chatbot/")
     return [my_bot, trainer]
@@ -62,3 +60,4 @@ def botResponse(bot, input):
 
 def saveBot(trainer):
     trainer.export_for_training('./my_export.json')
+
