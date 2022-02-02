@@ -1,6 +1,7 @@
 from discord.ext.commands import context
 from discord.ext.commands.core import command;
 import discord
+import logging logger = logging.getLogger() logger.setLevel(logging.CRITICAL)
 from discord.ext import commands
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.comparisons import LevenshteinDistance
