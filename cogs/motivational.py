@@ -45,7 +45,7 @@ def get_advice():
     advice = json_data["slip"]['advice']
     return advice
 
-sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "depressing", "cry"]
+sad_words = [" sad ", "depressed", "unhappy", "angry", "miserable", "depressing", " cry "]
 starter_encourougements = [
 "*pat pat*"
 "Cheer up! I believe in you!",

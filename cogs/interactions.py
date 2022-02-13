@@ -1,7 +1,7 @@
+import discord
+
 from discord.ext.commands import context
 from discord.ext.commands.core import command;
-import discord
-import logging logger = logging.getLogger() logger.setLevel(logging.CRITICAL)
 from discord.ext import commands
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.comparisons import LevenshteinDistance
@@ -27,11 +27,6 @@ class Interactions(commands.Cog):
                 notclean, clean = message.content.split(">")
                 await message.channel.send(botResponse(self.bot, clean[1:]))
                 print(clean[1:])
-    
-    @commands.command()
-    async def hug(self,ctx):
-        saveBot(self.trainer)
-        await ctx.send()
 
 def setup(client):
     """ Setup Cat Module"""
@@ -51,9 +46,9 @@ def turnOnBot():
         ]
     )
     list_trainer = ListTrainer(my_bot)
-    
+    #'chatterbot.corpus.english', 
     trainer = ChatterBotCorpusTrainer(my_bot)
-    trainer.train('chatterbot.corpus.english', "./db/chatbot/")
+    trainer.train("./db/chatbot/", "./db/defaults/")
     return [my_bot, trainer]
 
 def botResponse(bot, input):
@@ -61,4 +56,3 @@ def botResponse(bot, input):
 
 def saveBot(trainer):
     trainer.export_for_training('./my_export.json')
-
