@@ -5,6 +5,6 @@ schedule
 ffmpeg
 youtube_dl
 PyNaCl
-chatterbot
-chatterbot_corpus
+#chatterbot
+#chatterbot_corpus
 pillow
