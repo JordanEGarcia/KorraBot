@@ -38,4 +38,4 @@ jobs:
         giphyAPI: ${{ secrets.GIPHY }}
     - name: Run Discord
       run: |
-        python main.py
+        python main.py&
