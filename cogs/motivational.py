@@ -18,6 +18,8 @@ class Motivational(commands.Cog):
     async def on_message(self,message):
         if message.author == self.client.user:
             return
+        if "wrong answer" in message.content:
+            await message.channel.send("https://media.discordapp.net/attachments/872277715112317011/961280245384773632/korra_with_a_gun.png?width=702&height=702")
         if any(word in message.content for word in sad_words):
             await message.channel.send(random.choice(starter_encourougements))
     #commands
