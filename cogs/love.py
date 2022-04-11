@@ -17,27 +17,37 @@ class Love(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         return
-    @commands.command()
+    @commands.command(brief='I hug you', description='I am hugging you what more can you ask for!')
     async def hug(self, ctx):
         await ctx.send("hugs " +  ctx.author.name  + " back!")
-    @commands.command()
-    async def kiss(self,ctx):
-    	await ctx.send("kisses " + ctx.author.name + " back!")
-    @commands.command()
+
+    @commands.command(brief='just a lick :D', description='I am licking you. what more can you ask for!')
     async def lick(self,ctx):
     	await ctx.send("licks " +  ctx.author.name + " back")
-    @commands.command()
+
+    @commands.command(brief='Flip a Korra', description="It's like flipping a coin, but a bit better")
     async def flip(self,ctx):
     	await ctx.send("Flips a coin and lays on my back...\n\n " + random.choice(["... you can touch my tail", "...you can pet my head"]))
-    @commands.command()
+
+    @commands.command(brief="I'm warning you, just dont...", description="I will get angry and use my fullest authority to bring you down.")
     async def horny(self, ctx):
     	await ctx.send("https://i.gifer.com/5Dy.gif")
     	await ctx.send("GO TO BRAZIL! \n "+ ctx.author.mention  + " is dead...")
+
     @commands.command()
     async def propose(self,ctx):
     	await ctx.send("You have to be at least as rich as me to propose!")
-    @commands.command()
-    async def wanted(self,ctx):
+    @commands.command(brief="nya roll 25", description="Roll a number of you choosing. Or be default of 6.")
+    async def roll(self,ctx, url=6):
+        if (isinstance(url, int)):
+            random_value = str(random.randrange(url)+1)
+            await ctx.send(ctx.author.name + " rolled a " + random_value + ". Nya!")
+            if (random_value == "1"):
+                await ctx.send("oof...")
+        else:
+            await ctx.send("Use a real number, dum dum.")
+    @commands.command(brief="Wha... but why...", description="Kiss me and you'll be having a hard time")
+    async def kiss(self,ctx):
         wanted = Image.open("db/images/wanted.jpg")
         asset = ctx.author.avatar_url_as(size = 128)
         draw = ImageDraw.Draw(wanted)
