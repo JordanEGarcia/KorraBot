@@ -30,7 +30,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Get Secrets
       run: |
-          echo -e '{ "discordAPI": "$TOKEN", "giphyAPI": "$giphyAPI" }' > secrets.json
+          cat << EOF > secrets.json
+          { "discordAPI": "$TOKEN", "giphyAPI": "$giphyAPI" }
+          EOF
       env:
         TOKEN: ${{ secrets.DISCORD_TOKEN }}
         giphyAPI: ${{ secrets.GIPHY }}
