@@ -38,7 +38,7 @@ jobs:
         giphyAPI: ${{ secrets.GIPHY }}
     - name: Firebase API
       run: |
-          cat << EOF > secrets.json
+          cat << EOF > firebase.json
             {
               "type": "service_account",
               "project_id": "leafy-tuner-238701",
