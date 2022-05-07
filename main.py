@@ -34,5 +34,5 @@ for filename in os.listdir('./cogs'):
 
 with open('secrets.json') as filename:
     secret = json.load(filename)
-
+    
 client.run(secret["discordAPI"])
