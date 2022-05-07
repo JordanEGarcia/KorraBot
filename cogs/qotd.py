@@ -26,7 +26,7 @@ class qotd(commands.Cog):
     def __init__(self, client):
         """ Initialize Cat Class"""
         self.client = client
-        self.channel = 972288672319815710
+        self.channel = 876669480934191164
         self.on_ready.start()
     @commands.command(brief='Add A Question', description="Add a question to the question of the day.")
     @commands.has_any_role("🌺 Front Desk🌺","🐦Calvary 🐦", 492212595072434186, 971578555551088740)
