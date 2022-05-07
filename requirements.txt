@@ -6,3 +6,4 @@ ffmpeg
 youtube_dl
 PyNaCl
 pillow
+firebase_admin
