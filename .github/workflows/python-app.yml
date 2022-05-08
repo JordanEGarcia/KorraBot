@@ -37,24 +37,9 @@ jobs:
         TOKEN: ${{ secrets.DISCORD_TOKEN }}
         giphyAPI: ${{ secrets.GIPHY }}
     - name: Firebase API
-      run: |
-          cat << EOF > firebase.json
-            {
-              "type": "service_account",
-              "project_id": "leafy-tuner-238701",
-              "private_key": "$FIREBASE_PRIVATE_KEY_ID",
-              "private_key_id": "$FIREBASE_PRIVATE_KEY",
-              "client_email": "firebase-adminsdk-efn2k@leafy-tuner-238701.iam.gserviceaccount.com",
-              "client_id": "118404525140030878815",
-              "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-              "token_uri": "https://oauth2.googleapis.com/token",
-              "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-              "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-efn2k%40leafy-tuner-238701.iam.gserviceaccount.com"
-            }
-          EOF
+      run: gdown $FIREBASE_PRIVATE_KEY --fuzzy
       env:
         FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-        FIREBASE_PRIVATE_KEY_ID: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
     - name: Run Discord
       run: |
         python main.py&
