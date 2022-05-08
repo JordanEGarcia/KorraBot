@@ -42,8 +42,8 @@ jobs:
             {
               "type": "service_account",
               "project_id": "leafy-tuner-238701",
-              "private_key_id": "$FIREBASE_PRIVATE_KEY",
               "private_key": "$FIREBASE_PRIVATE_KEY_ID",
+              "private_key_id": "$FIREBASE_PRIVATE_KEY",
               "client_email": "firebase-adminsdk-efn2k@leafy-tuner-238701.iam.gserviceaccount.com",
               "client_id": "118404525140030878815",
               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
