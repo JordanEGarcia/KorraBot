@@ -42,8 +42,5 @@ jobs:
         FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
     - name: Kill all previous processes
       run: kill -9 $(ps aux | grep -i "python3 main.py" | awk 'NR==1{print $2}')
-    - name: Test Discord
-      run: |
-        python main.py
     - name: Rerun application in the background
       run: nohup python3 main.py&
