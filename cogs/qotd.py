@@ -8,6 +8,12 @@ from discord.ext import tasks
 
 cred = credentials.Certificate("firebase.json")
 firebase_admin.initialize_app(cred, {'databaseURL': 'https://leafy-tuner-238701-default-rtdb.firebaseio.com/'})
+
+################################
+#
+# Function: process the newest questions and send it back to the qotd class
+#
+###############################
 def post(self):
     now = datetime.now()
     current_time = now.strftime("%H:%M")
@@ -21,26 +27,14 @@ def post(self):
     embed.set_footer(text=f' Asked by: Korra! • {len(question)} Questions Left • Today at {current_time}')
     db.reference(f"Question/{list(question.items())[0][0]}").delete()
     return embed
-    
+
+
 class qotd(commands.Cog):
     def __init__(self, client):
         """ Initialize Cat Class"""
         self.client = client
-        self.channel = 972288672319815710
+        self.channel = 876669480934191164
         self.on_ready.start()
-    @commands.command(brief='Add A Question', description="Add a question to the question of the day.")
-    @commands.has_any_role("🌺 Front Desk🌺","🐦Calvary 🐦", 492212595072434186, 971578555551088740)
-    async def q_add(self,ctx, question):
-        if (len(question)):
-            ref = dv.reference('py/')
-            users_ref = ref.child('users')
-            users_ref.set({3,question})
-            await ctx.send("question successfully sent")
-        else:
-            await ctx.send("question must be sent by the calvary!")
-    db.reference("Question/0").delete()
-
-
 
     ################################
     #
@@ -52,9 +46,9 @@ class qotd(commands.Cog):
     async def q_read(self,ctx):
         handle = db.reference('Question')
         question = handle.order_by_key().get()
-        await ctx.send(f'The next Question is going to be: {question[0]} ')
+        await ctx.send(f'The next Question is going to be: {question[0]}.')
         await ctx.send(" All of them can be read here: https://console.firebase.google.com/u/0/project/leafy-tuner-238701/database/leafy-tuner-238701-default-rtdb/data")
-        await ctx.send(f'{len(question)} questions left')
+        await ctx.send(f'{len(question)} questions left. Please add more.')
 
     ################################
     #
@@ -67,8 +61,6 @@ class qotd(commands.Cog):
         handle = db.reference('Question')
         handle.push(question)
         await ctx.send("Question Sent successfully thank you!")
-
-
     
     ################################
     #
@@ -93,9 +85,9 @@ class qotd(commands.Cog):
     async def on_ready(self):
         await self.client.wait_until_ready()
         current_time = datetime.now().strftime("%H")
-
+        print(current_time)
         # When the time is ##:## start the stuff!
-        if(current_time == '8'):
+        if(current_time == '9'):
             channel = self.client.get_channel(self.channel)
             await channel.send(embed=post(self))
 

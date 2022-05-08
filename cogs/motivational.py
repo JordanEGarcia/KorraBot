@@ -49,9 +49,15 @@ def get_advice():
 
 sad_words = [" sad ", "depressed", "unhappy", "angry", "miserable", "depressing", " cry "]
 starter_encourougements = [
-"*pat pat*"
+"I'm here for you. Cry if you need to",
+"I promise it will get better, maybe not now, but one day",
+"I can go shopping with you later if that'll make you feel better?",
+"I'll be there to cheer you up. Give me a bit."
+"https://c.tenor.com/2lr9uM5JmPQAAAAC/hug-anime-hug.gif",
+"*pat pat*",
 "Cheer up! I believe in you!",
 "Who cares",
 "Remember you are special there is no one like you out there.",
 "I had days like those too. I'm not good very good with words but maybe <@201184088118394880> can help?"
+
 ]
