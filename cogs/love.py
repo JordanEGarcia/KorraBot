@@ -27,7 +27,7 @@ class Love(commands.Cog):
 
     @commands.command(brief='Flip a Korra', description="It's like flipping a coin, but a bit better")
     async def flip(self,ctx):
-    	await ctx.send("Flips a coin and lays on my back...\n\n " + random.choice(["... you can touch my tail", "...you can pet my head"]))
+    	await ctx.send("Flips a coin and...\n\n " + random.choice(["... lays on my back. Y-you can touch my tail", "...fidgets a little. I-I guess you can pet my head.", "...grabs it! Don't look at me like that. I need the money!", "...headbutts you! OWW! You've got such a hard head!", "...pins the tail on my little donkey... I MEAN YOU, YA DUTZ!", "...the coin keeps flipping and flipping and flipping and flipping and flipping and flipping...", "...shaves off all of your hair. Nya hahaha!", "...slaps you on the tooshie! Ji ji ji ji", "...lands on the edge! WOAH!", "...curls up on the top of your head. Yaaawn. What a good napping face.", "...booty bumps ya!", "...hands your a brush. Go ahead and brush my tail, why dontcha?"]))
 
     @commands.command(brief="I'm warning you, just dont...", description="I will get angry and use my fullest authority to bring you down.")
     async def horny(self, ctx):
