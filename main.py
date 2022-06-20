@@ -1,58 +1,38 @@
-from quart import Quart, render_template, request, session, redirect, url_for
-from quart_discord import DiscordOAuth2Session
-from discord.ext import ipc
-
-ipc_client = ipc.Client(secret_key = "Swas")
+import discord;
+from discord.ext import commands
+import os;
 import json;
 
-# load the secret json file
+listener = discord.Client()
+client = commands.Bot(command_prefix = 'nya ')
+    
+@client.event
+async def on_ready():
+    print("we have logged in as {0.user}".format(client))
+    await client.change_presence(status=discord.Status.idle, activity=discord.Game("with fire~ | nya help"))
+
+@client.event
+async def on_message(message):
+    await client.wait_until_ready()
+    channel = client.get_channel(877360429951778837) # are you sure this channel exists?
+    if message.channel == message.author.dm_channel: # do not use guild == None, as group dms might satisfy this, and you can't message yourself, no need to check client user
+        embed = discord.Embed(
+            title = 'Support requested!',
+            description = f'{message.content}',
+            color = 0x9fffff
+            )
+        embed.set_footer(text=f'Requested by {message.author.display_name} | ID-{message.author.id}')
+        await channel.send(embed=embed)
+        print("Support requested by {} | ID-{}!" .format(message.author, message.author.id))
+        print("Content: '{}'." .format(message.content))
+    await client.process_commands(message)
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        print(filename)
+        client.load_extension(f'cogs.{filename[:-3]}')
+
 with open('secrets.json') as filename:
     secret = json.load(filename)
-
-app = Quart (__name__)
-app.config["SECRET_KEY"] = "test"
-app.config["DISCORD_CLIENT_ID"] = secret["DISCORD_CLIENT_ID"]
-app.config["DISCORD_CLIENT_SECRET"] = secret["DISCORD_CLIENT_SECRET"]
-app.config["DISCORD_REDIRECT_URI"] = "http://127.0.0.1:5000/callback"
-
-discord = DiscordOAuth2Session(app)
-
-@app.route("/")
-async def home():
-	return await render_template("index.html")
-
-@app.route("/login")
-async def login():
-	return await discord.create_session()
-
-@app.route("/callback")
-async def callback():
-	try:
-		await discord.callback()
-	except:
-		return redirect(url_for("login"))
-
-	user = await discord.fetch_user()
-	return f"{user.name}#{user.discriminator}" #You should return redirect(url_for("dashboard")) here
-
-@app.route("/dashboard")
-async def dashboard():
-	guild_count = await ipc_client.request("get_guild_count")
-	guild_ids = await ipc_client.request("get_guild_ids")
-
-	try:
-		user_guilds = await discord.fetch_guilds()
-	except:
-		return redirect(url_for("login")) 
-
-	same_guilds = []
-
-	for guild in user_guilds:
-		if guild.id in guild_ids:
-			same_guilds.append(guild)
-
-
-	return await render_template("dashboard.html", guild_count = guild_count, matching = same_guilds)
-
-if __name__ == "__main__":
-	app.run(debug=True)
+    
+client.run(secret["discordAPI"])
