@@ -30,15 +30,13 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Get Secrets
       run: |
+          gdown $FIREBASE_PRIVATE_KEY --fuzzy --quiet;
           cat << EOF > secrets.json
           { "discordAPI": "$TOKEN", "giphyAPI": "$giphyAPI" }
           EOF
       env:
         TOKEN: ${{ secrets.DISCORD_TOKEN }}
         giphyAPI: ${{ secrets.GIPHY }}
-    - name: Firebase API
-      run: gdown $FIREBASE_PRIVATE_KEY --fuzzy --quiet
-      env:
         FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
     - name: Kill all previous processes
       run: kill -9 $(ps aux | grep -i "python3 main.py" | awk 'NR==1{print $2}')
