@@ -31,6 +31,15 @@ class Motivational(commands.Cog):
     async def advice(self, ctx):
         await ctx.send(get_advice())
 
+    @commands.Cog.listener()
+    async def on_message(self,message):
+        if message.author == self.client.user:
+            return
+        else:
+            if self.client.user.mentioned_in(message):
+                notclean, clean = message.content.split(">")
+                await message.channel.send(requests.get(f'http://localhost:8000/request?input={(clean[1:])}').text)
+                
 def setup(client):
     """ Setup Cat Module"""
     client.add_cog(Motivational(client))

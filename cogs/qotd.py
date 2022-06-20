@@ -46,7 +46,7 @@ class qotd(commands.Cog):
     async def q_read(self,ctx):
         handle = db.reference('Question')
         question = handle.order_by_key().get()
-        await ctx.send(f'The next Question is going to be: {question[0]}.')
+        await ctx.send(f'The next Question is going to be: {list(question.items())[0][1]}')
         await ctx.send(" All of them can be read here: https://console.firebase.google.com/u/0/project/leafy-tuner-238701/database/leafy-tuner-238701-default-rtdb/data")
         await ctx.send(f'{len(question)} questions left. Please add more.')
 
